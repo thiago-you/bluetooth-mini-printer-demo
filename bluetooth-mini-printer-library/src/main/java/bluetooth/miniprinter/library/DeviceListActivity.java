@@ -1,4 +1,4 @@
-package you.dev.bluetoothminiprinter;
+package bluetooth.miniprinter.library;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -19,9 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class DeviceListActivity extends AppCompatActivity {
 
-    public static String EXTRA_DEVICE_ADDRESS = "device_address";
+    public static final String EXTRA_DEVICE_ADDRESS = "device_address";
 
     private BluetoothAdapter mBtAdapter;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
@@ -124,7 +125,7 @@ public class DeviceListActivity extends AppCompatActivity {
         mBtAdapter.startDiscovery();
     }
 
-    private AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
             /* cancel discovery because it's costly and we're about to connect */
@@ -177,5 +178,4 @@ public class DeviceListActivity extends AppCompatActivity {
             }
         }
     };
-
 }
