@@ -2,10 +2,12 @@
   <dictionary name="you">
     <words>
       <w>abcdefghijklmnopqrstuvxyz</w>
+      <w>allprojects</w>
       <w>autofocus</w>
       <w>bluetoothminiprinter</w>
       <w>grayave</w>
       <w>unsynchronized</w>
+      <w>xlint</w>
     </words>
   </dictionary>
 </component>

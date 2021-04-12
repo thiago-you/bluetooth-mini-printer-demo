@@ -9,10 +9,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -223,7 +225,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (data != null && data.getData() != null) {
                         try {
                             btnRemoveImg.show();
-                            imgBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                                ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), data.getData());
+                                imgBitmap = ImageDecoder.decodeBitmap(source);
+                            } else {
+                                imgBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                            }
+
                             imgPrintable.setImageBitmap(imgBitmap);
                         } catch (IOException e) {
                             Log.e(getClass().getSimpleName(), e.getMessage(), e);
@@ -293,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @SuppressLint("HandlerLeak")
-    private final Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
