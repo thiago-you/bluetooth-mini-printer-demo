@@ -461,7 +461,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Manifest.permission.BLUETOOTH_ADMIN,
                         Manifest.permission.CAMERA,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 };
 
                 /* validate and get not allowed permissions */
