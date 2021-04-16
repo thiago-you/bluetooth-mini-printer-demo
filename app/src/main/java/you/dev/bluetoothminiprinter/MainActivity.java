@@ -225,14 +225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (data != null && data.getData() != null) {
                         try {
                             btnRemoveImg.show();
-
-                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-                                ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), data.getData());
-                                imgBitmap = ImageDecoder.decodeBitmap(source);
-                            } else {
-                                imgBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                            }
-
+                            imgBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                             imgPrintable.setImageBitmap(imgBitmap);
                         } catch (IOException e) {
                             Log.e(getClass().getSimpleName(), e.getMessage(), e);
